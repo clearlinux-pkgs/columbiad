@@ -4,7 +4,7 @@
 #
 Name     : columbiad
 Version  : 60bb06a68257557a6f2333fd9310f7f42e434ed3
-Release  : 2
+Release  : 3
 URL      : https://github.com/sofar/columbiad/archive/60bb06a68257557a6f2333fd9310f7f42e434ed3.tar.gz
 Source0  : https://github.com/sofar/columbiad/archive/60bb06a68257557a6f2333fd9310f7f42e434ed3.tar.gz
 Summary  : No detailed summary available
