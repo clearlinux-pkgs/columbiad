@@ -4,7 +4,7 @@
 #
 Name     : columbiad
 Version  : 60bb06a68257557a6f2333fd9310f7f42e434ed3
-Release  : 3
+Release  : 4
 URL      : https://github.com/sofar/columbiad/archive/60bb06a68257557a6f2333fd9310f7f42e434ed3.tar.gz
 Source0  : https://github.com/sofar/columbiad/archive/60bb06a68257557a6f2333fd9310f7f42e434ed3.tar.gz
 Summary  : No detailed summary available
@@ -41,20 +41,25 @@ license components for the columbiad package.
 
 %prep
 %setup -q -n columbiad-60bb06a68257557a6f2333fd9310f7f42e434ed3
+cd %{_builddir}/columbiad-60bb06a68257557a6f2333fd9310f7f42e434ed3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1556745983
-export LDFLAGS="${LDFLAGS} -fno-lto"
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain   builddir
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604538705
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/columbiad
-cp LICENSE %{buildroot}/usr/share/package-licenses/columbiad/LICENSE
+cp %{_builddir}/columbiad-60bb06a68257557a6f2333fd9310f7f42e434ed3/LICENSE %{buildroot}/usr/share/package-licenses/columbiad/f0aaeb9183bca4511d21c13a39052e24f3774645
 DESTDIR=%{buildroot} ninja -C builddir install
 
 %files
@@ -66,4 +71,4 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/columbiad/LICENSE
+/usr/share/package-licenses/columbiad/f0aaeb9183bca4511d21c13a39052e24f3774645
